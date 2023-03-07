@@ -1,31 +1,42 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'dart:convert';
+import 'package:Quran.me/models/detail_surah_model.dart';
+import 'package:Quran.me/models/surah.dart';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+//import http
 
-import 'package:projekuas/main.dart';
-import 'package:projekuas/view/home.dart';
+void main() async {
+  Uri url = Uri.parse("https://api.quran.gading.dev/surah");
+  var res = await http.get(url);
+  print(res.body);
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(HomeScreen());
+  // Future<DetailSurahModel> getDetailSurah(String id) async {
+  //   Uri url = Uri.parse("https://api.quran.gading.dev/surah/$id");
+  //   var res = await http.get(url);
+  //   Map<String, dynamic> data = (json.decode(res.body) as Map<String, dynamic>);
+  //   print(data.toString());
+  //   return DetailSurahModel.fromJson(data);
+  // }
+  // Future<DetailSurahModel> getDetailSurah(String id) async {
+  //   Uri url = Uri.parse("https://api.quran.gading.dev/surah/$id");
+  //   var res = await http.get(url);
+  //   Map<String, dynamic> data =
+  //       (json.decode(res.body) as Map<String, dynamic>)["data"];
+  //   DetailSurahModel tes = DetailSurahModel.fromJson(data);
+  //   print("//////");
+  //   print(res.body);
+  //   return DetailSurahModel.fromJson(data);
+  // }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  // await getDetailSurah(1.toString());
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  // Uri url = Uri.parse("https://api.quran.gading.dev/surah/1");
+  // var res = await http.get(url);
+  // print(res.body);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+  // var dio = Dio();
+  // final response = await dio.get("https://api.quran.gading.dev/surah/1");
+  // print(response.data);
 }
