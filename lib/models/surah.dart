@@ -1,5 +1,3 @@
-// URL API = https://api.quran.gading.dev/surah
-
 class Surah {
   int? number;
   int? sequence;
